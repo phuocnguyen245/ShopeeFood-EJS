@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/66f79e327f.js" crossorigin="anonymous"></script>
+
+    <title>Shopee Food</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <link rel="stylesheet" href="/css/main.css">
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="icon" type="image/png" href="/img/LogoShopeefoodVN.png">
+</head>
+
+<body>
+    <div class="root">
+        <div class="wrapper">
+            <%- include('././partials/header') %>
+            <div class="content-container-left">
+                <div class="container">
+                    <div class="left t-w col-5">
+                        <div class="left__text t-w">
+                            <h1>Đặt đồ ăn, giao hàng từ 20'...</h1>
+                            <p class="t-w">Có 9047 Địa Điểm Ở Đà Nẵng Từ 06:00 - 22:00</p>
+                        </div>
+                        <div class="left__search col-12 col-sm-12 col-md-12 p-0">
+                            <input type="text" placeholder="Tìm địa điểm, món ăn, địa chỉ" />
+                            <a href="">
+                                <button class="btn">
+                                    <i class="fa fa-search text-white"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="left__menu flex">
+                            <a class="left__menu__item" href="#">All</a>
+                            <a class="left__menu__item" href="#">Đồ ăn</a>
+                            <a class="left__menu__item" href="#">Đồ uống</a>
+                            <a class="left__menu__item" href="#">Đồ chay</a>
+                            <a class="left__menu__item" href="#">Bánh kem</a>
+                            <a class="left__menu__item" href="#">Tráng miệng</a>
+                            <a class="left__menu__item" href="#">Đồ ăn</a>
+                            <a class="left__menu__item" href="#">Đồ ăn</a>
+                            <a class="left__menu__item" href="#">Đồ ăn</a>
+                            <a class="left__menu__item" href="#">Đồ ăn</a>
+                        </div>
+                        <div class="left__text">
+                            <p class="t-w">Sử dụng App ShopeeFood để có nhiều giảm giá
+                                <br>và trải nghiệm tốt hơn
+                            </p>
+                        </div>
+                        <div class="left__connect flex justify-content-start">
+                            <div class="pr-4">
+                                <a href="#">
+                                    <img src="./img/AppStore-vn.png" alt="">
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#">
+                                    <img src="./img/PlayStore-vn.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-container-right clearfix">
+                <div class="container">
+                    <div class="right">
+                        <div class="right__local">
+                            <span><b>Địa chỉ</b></span>
+                            <span>Chọn địa chỉ giao hàng</span>
+                        </div>
+                        <% const formatter = new Intl.NumberFormat("vi-VI", { style: "currency", currency: "VND", minimumFractionDigits: 0 }) %>
+                        <% shop.categoryValue.map(cate=>{ %>
+                        <section class="right-wrapper">
+                            <div class="right__title"><span><b><%- cate.categoryName %></b></span></div>
+                            <div class="right__list row m-0">
+                                <% const shopByCategory=shop.shopValue.filter((shop)=> { %>
+                                    <% return shop.category === cate.id %>    
+                                <% }) %>
+                                <% shopByCategory.forEach((shop) => { %>
+                                    <% const cost = formatter.format(shop.cost) %>
+
+                                    <div class="col-12 col-sm-6 col-md-3 col-lg-4 col-xl-4 p-1 right-item" id="<%- shop.id %>">
+                                        <a class="" href="#">
+                                            <img src="<%- shop.img %>" alt="">
+                                            <div>
+                                                <div class="right-item__desc">
+                                                    <p class="m-0"title="<%- shop.shopName %>"><%- shop.shopName %>
+                                                    <p class="m-0"title="<%- shop.address %>"><%- shop.address %></p>
+                                                </div>
+                                                <div class="row flex justify-content-start flex-nowrap ml-1 right-item__disc">
+                                                    <div class="flex justify-content-start pl-1 pr-1">
+                                                        <i class="fas fa-tag pr-1 "></i>
+                                                        <p class="m-0"><%- cost %></p>
+                                                    </div>
+                                                    <div class="flex justify-content-start align-center pl-1 pr-1">
+                                                        <i class="fa fa-dollar pr-1"></i>
+                                                        <p class="m-0">Giá 40k</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row flex justify-content-start flex-nowrap right-item__disc">
+                                                    <div class="flex justify-content-start align-center mr-1">
+                                                        <i class="fas fa-tag pl-1"></i>
+                                                        <p class="m-0 pr-1">Mã giảm 20k</p>
+                                                    </div>
+                                                    <div class="flex justify-content-start align-center">
+                                                        <i class="fas fa-motorcycle pl-1 pr-1"></i>
+                                                        <p class="m-0 pr-1">Giá 20k</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <% }) %>
+                            </div>
+                        </section>
+                        <% }) %>
+                        
+                    </div>
+                </div>
+            </div>
+            <%- include('././partials/banner') %>
+            <%- include('././partials/footer.ejs') %>
+            <%- include('././partials/navMobile') %>
+        </div>
+    </div>
+    <%- include('././partials/modal') %>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="./js/handleInterface.js"></script>
+    <script>
+        (async () => {
+            try {
+                const formatter = new Intl.NumberFormat("vi-VI", { style: "currency", currency: "VND", minimumFractionDigits: 0 })
+                const resCategories = await fetch("http://localhost:3000/categoryJsons");
+                const categories = await resCategories.json();
+                const resShops = await fetch("http://localhost:3000/shopJsons");
+                const shops = await resShops.json();
+                const shopItems = document.querySelectorAll(".right-item")
+                const shopId = [];
+                shopItems.forEach((shopItem) => {
+                    // console.log(shopItem);
+                    shopItem.onclick = () => {
+                        const cart = document.querySelector(".cart-container .cart__list");
+                        shopId.push(Number(shopItem.id));
+
+                        const findShopById = shops.filter((items) => {
+                            return shopId.some((id) => items.id === id);
+                        });
+                        document.querySelector(".qty p").innerText = findShopById.length;
+                        const getCost = findShopById.reduce((a, b) => {
+                            return b.cost + a;
+                        }, 0);
+                        const sumCost = formatter.format(`${getCost}`);
+
+                        document.querySelector(".btn-search").onclick = () => {
+                            document.querySelector(".cart").classList.add("open");
+                            const renderCart = findShopById.map((render) => {
+                                return `
+                                <div class="right-item" id="${render.id}">
+                                    <a class="" href="#">
+                                        <img src="${render.img}" alt="">
+                                        <div>
+                                            <div class="right-item__desc">
+                                                <p class="m-0"title="${render.shopName}">${render.shopName}
+                                                <p class="m-0"title="${render.address}">${render.address}</p>
+                                            </div>
+                                            <div class="row flex justify-content-start flex-nowrap ml-1 right-item__disc">
+                                                <div class="flex justify-content-start pl-1">
+                                                    <i class="fas fa-tag pr-1 "></i>
+                                                    <p class="m-0">${render.cost}</p>
+                                                </div>
+                                                <div class="flex justify-content-start pl-1">
+                                                    <i class="fas fa-tag pr-1 "></i>
+                                                    <p class="m-0">${render.cost}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>`;
+                            });
+                            cart.innerHTML = renderCart.join("");
+                            const payment = `<button class="clear-float" type="button">Ok&nbsp;+&nbsp${sumCost}</button>`;
+                            document.querySelector(".cart__footer").innerHTML = payment;
+                        };
+                    };
+                });
+            }catch(e){
+                console.log(e);
+            }
+            const aTag = document.querySelector("a")
+            aTag.onclick = (e) => {
+                e.preventDefault();
+            }
+        })()
+    </script>
+</body>
+
+</html>
