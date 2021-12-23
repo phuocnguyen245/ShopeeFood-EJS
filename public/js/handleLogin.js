@@ -56,7 +56,7 @@ const handleLogin = () => {
 
                     if (isUser.length > 0) {
                         window.localStorage.setItem('currentUser', JSON.stringify(userLogin))
-                        window.location.href = "index.html"
+                        window.location.href = "/"
                     } else {
                         document.querySelector('.login-alert').style.display = 'block'
                         document.querySelector('.login-alert').innerText = 'Vui lòng nhập lại'
